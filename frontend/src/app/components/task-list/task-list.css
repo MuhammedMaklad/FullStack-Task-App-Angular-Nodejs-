@@ -1,0 +1,272 @@
+.task-list-container {
+  padding: 10px;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.list-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #2d3436;
+}
+
+.task-count {
+  font-size: 0.9rem;
+  color: #636e72;
+  background: #f1f2f6;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+/* Grid Layout */
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* Card Styling */
+.task-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  display: flex;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid #f0f0f0;
+  position: relative;
+}
+
+.task-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.card-status-indicator {
+  width: 6px;
+  background: #dfe6e9;
+  transition: background 0.3s;
+}
+
+.task-card.completed .card-status-indicator {
+  background: #00b894;
+}
+
+.card-content {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Card Top Section */
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.title-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.title-section h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #2d3436;
+  transition: color 0.3s;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+  color: #b2bec3 !important;
+}
+
+/* Checkbox UX */
+.checkbox-container {
+  display: block;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background-color: #00b894;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkbox-container .checkmark:after {
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-edit, .btn-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-edit {
+  color: #74b9ff;
+}
+
+.btn-edit:hover {
+  background: #f0f7ff;
+  color: #0984e3;
+}
+
+.btn-delete {
+  color: #fab1a0;
+}
+
+.btn-delete:hover {
+  background: #fff5f5;
+  color: #ff7675;
+}
+
+/* Description */
+.description {
+  color: #636e72;
+  font-size: 0.9rem;
+  margin: 0 0 15px 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+/* Card Footer */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f9f9f9;
+  padding-top: 12px;
+  margin-top: auto;
+}
+
+.badges {
+  display: flex;
+  gap: 8px;
+}
+
+.badge {
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.badge.category {
+  background: #e1f5fe;
+  color: #0288d1;
+}
+
+.badge.priority[data-priority="high"] {
+  background: #ffebee;
+  color: #d32f2f;
+}
+
+.badge.priority[data-priority="medium"] {
+  background: #fff8e1;
+  color: #ffa000;
+}
+
+.badge.priority[data-priority="low"] {
+  background: #e8f5e9;
+  color: #388e3c;
+}
+
+.due-date {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.75rem;
+  color: #b2bec3;
+}
+
+.due-date.overdue {
+  color: #d63031;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 50px 20px;
+  background: #f9f9f9;
+  border-radius: 15px;
+  border: 2px dashed #eee;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.empty-state h3 {
+  margin: 0 0 10px 0;
+  color: #2d3436;
+}
+
+.empty-state p {
+  color: #636e72;
+  margin: 0;
+}

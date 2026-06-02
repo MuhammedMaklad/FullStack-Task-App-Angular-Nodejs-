@@ -1,0 +1,45 @@
+<div class="task-bar-container">
+  <div class="task-bar-header">
+    <div class="filter-group">
+      <button 
+        class="filter-btn" 
+        [class.active]="currentTab === 'all'" 
+        (click)="onClickTab('all')"
+      >
+        <span class="icon">📋</span>
+        <span class="label">All</span>
+        <span class="count">{{ counts.all }}</span>
+      </button>
+      
+      <button 
+        class="filter-btn" 
+        [class.active]="currentTab === 'notDone'" 
+        (click)="onClickTab('notDone')"
+      >
+        <span class="icon">⏳</span>
+        <span class="label">Pending</span>
+        <span class="count">{{ counts.notDone }}</span>
+      </button>
+
+      <button 
+        class="filter-btn" 
+        [class.active]="currentTab === 'done'" 
+        (click)="onClickTab('done')"
+      >
+        <span class="icon">✅</span>
+        <span class="label">Completed</span>
+        <span class="count">{{ counts.done }}</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="task-list-wrapper">
+    <app-task-list
+      [tasks]="filteredTasks"
+      (toggleComplete)="toggleCompleteTask($event)"
+      (deleteTask)="removeTask($event)"
+      (editTask)="editTask($event)"
+    >
+    </app-task-list>
+  </div>
+</div>

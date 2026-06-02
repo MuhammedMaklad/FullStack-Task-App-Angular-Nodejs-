@@ -1,0 +1,129 @@
+.not-found-container {
+  min-height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 20px;
+  text-align: center;
+}
+
+.not-found-content {
+  max-width: 500px;
+  background: white;
+  padding: 60px 40px;
+  border-radius: 32px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  animation: slideUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.error-code {
+  font-size: 8rem;
+  font-weight: 900;
+  line-height: 1;
+  background: linear-gradient(135deg, #0984e3, #6c5ce7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+  letter-spacing: -5px;
+}
+
+.illustration {
+  position: relative;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.circle {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: #f1f2f6;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(9, 132, 227, 0.2); }
+  70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(9, 132, 227, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(9, 132, 227, 0); }
+}
+
+.emoji {
+  font-size: 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #2d3436;
+  margin: 0 0 16px 0;
+}
+
+p {
+  color: #636e72;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0 0 32px 0;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.btn {
+  padding: 12px 28px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: #0984e3;
+  color: white;
+  box-shadow: 0 4px 12px rgba(9, 132, 227, 0.2);
+}
+
+.btn-primary:hover {
+  background: #0773c5;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(9, 132, 227, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid #dfe6e9;
+  color: #636e72;
+}
+
+.btn-outline:hover {
+  background: #f1f2f6;
+  border-color: #b2bec3;
+  color: #2d3436;
+}
+
+@media (max-width: 480px) {
+  .actions {
+    flex-direction: column;
+  }
+  
+  .error-code {
+    font-size: 6rem;
+  }
+}

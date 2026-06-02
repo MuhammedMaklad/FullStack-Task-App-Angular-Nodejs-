@@ -1,0 +1,53 @@
+<div 
+  class="slider-container" 
+  (mouseenter)="onMouseEnter()" 
+  (mouseleave)="onMouseLeave()"
+>
+  <div class="slider-viewport">
+    <div 
+      class="slider-track" 
+      [style.transform]="'translateX(' + (-currentIndex() * 100) + '%)'"
+    >
+      @for (slide of slides; track slide.url) {
+        <div class="slide">
+          <img [src]="slide.url" [alt]="slide.title" />
+          <div class="slide-caption">
+            <h3>{{ slide.title }}</h3>
+            <p>{{ slide.description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+
+    <button 
+      class="nav-btn prev" 
+      (click)="previousSlide()" 
+      aria-label="Previous Slide"
+    >
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+
+    <button 
+      class="nav-btn next" 
+      (click)="nextSlide()" 
+      aria-label="Next Slide"
+    >
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+
+    <div class="slider-dots">
+      @for (slide of slides; track $index) {
+        <button 
+          class="dot" 
+          [class.active]="currentIndex() === $index"
+          (click)="setIndex($index)"
+          [attr.aria-label]="'Go to slide ' + ($index + 1)"
+        ></button>
+      }
+    </div>
+  </div>
+</div>

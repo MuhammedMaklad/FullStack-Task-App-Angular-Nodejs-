@@ -1,0 +1,87 @@
+<div class="task-form-wrapper">
+  <div class="form-card">
+    <div class="form-header">
+      <div class="header-icon">
+        {{ mode === 'Edit' ? '✏️' : '🆕' }}
+      </div>
+      <h2>{{ mode === 'Edit' ? 'Edit Task' : 'Create New Task' }}</h2>
+      <p class="subtitle">{{ mode === 'Edit' ? 'Modify the details of your task' : 'Fill in the details to stay organized' }}</p>
+    </div>
+
+    <form class="task-form" (submit)="$event.preventDefault(); submitTask()">
+      <div class="form-group">
+        <label for="title">Task Title</label>
+        <div class="input-wrapper">
+          <span class="input-icon">📌</span>
+          <input 
+            type="text" 
+            id="title"
+            name="title" 
+            [(ngModel)]="task.title" 
+            placeholder="What needs to be done?" 
+            required
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <div class="input-wrapper">
+          <textarea
+            id="description"
+            name="description"
+            [(ngModel)]="task.description"
+            placeholder="Add some more details..."
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group half">
+          <label for="priority">Priority</label>
+          <div class="input-wrapper">
+            <span class="input-icon">🚩</span>
+            <select id="priority" name="priority" [(ngModel)]="task.priority">
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group half">
+          <label for="category">Category</label>
+          <div class="input-wrapper">
+            <span class="input-icon">📁</span>
+            <select id="category" name="category" [(ngModel)]="task.category">
+              <option value="work">Work</option>
+              <option value="personal">Personal</option>
+              <option value="study">Study</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="date">Due Date</label>
+        <div class="input-wrapper">
+          <span class="input-icon">📅</span>
+          <input 
+            type="date" 
+            id="date" 
+            name="date" 
+            [ngModel]="task.dueDate | date:'yyyy-MM-dd'" 
+            (ngModelChange)="task.dueDate=$event" 
+          />
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" routerLink="/task/tasks">Cancel</button>
+        <button type="submit" class="btn btn-primary">
+          {{ mode === 'Edit' ? 'Save Changes' : 'Create Task' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

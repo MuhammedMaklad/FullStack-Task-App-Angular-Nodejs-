@@ -1,0 +1,136 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <div class="auth-header">
+      <div class="auth-icon">✨</div>
+      <h2>Join TaskMaster</h2>
+      <p class="auth-subtitle">Create your account to start organizing your life today.</p>
+    </div>
+
+    <form #registerForm="ngForm" class="auth-form" (ngSubmit)="onSubmit(registerForm)">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <div class="input-wrapper">
+          <span class="input-icon">👤</span>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="John Doe"
+            required
+            minlength="3"
+            [(ngModel)]="user.name"
+            #name="ngModel"
+            [class.input-invalid]="name.invalid && (name.dirty || name.touched)"
+          />
+        </div>
+        @if (name.invalid && (name.dirty || name.touched)) {
+          <div class="error-message">
+            @if (name.errors?.['required']) {
+              <span>Name is required</span>
+            }
+            @if (name.errors?.['minlength']) {
+              <span>Name must be at least 3 characters</span>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <div class="input-wrapper">
+          <span class="input-icon">✉️</span>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="john@example.com"
+            required
+            email
+            [(ngModel)]="user.email"
+            #email="ngModel"
+            [class.input-invalid]="email.invalid && (email.dirty || email.touched)"
+          />
+        </div>
+        @if (email.invalid && (email.dirty || email.touched)) {
+          <div class="error-message">
+            @if (email.errors?.['required']) { <span>Email is required</span> }
+            @if (email.errors?.['email']) { <span>Please enter a valid email</span> }
+          </div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-wrapper">
+          <span class="input-icon">🔒</span>
+          <input
+            [type]="showPassword() ? 'text' : 'password'"
+            id="password"
+            name="password"
+            placeholder="••••••••"
+            required
+            minlength="6"
+            [(ngModel)]="user.password"
+            #password="ngModel"
+            [class.input-invalid]="password.invalid && (password.dirty || password.touched)"
+          />
+          <button type="button" class="toggle-visibility" (click)="togglePassword()">
+            {{ showPassword() ? '👁️' : '👁️‍🗨️' }}
+          </button>
+        </div>
+        @if (password.invalid && (password.dirty || password.touched)) {
+          <div class="error-message">
+            @if (password.errors?.['required']) {
+              <span>Password is required</span>
+            }
+            @if (password.errors?.['minlength']) {
+              <span>Password must be at least 6 characters</span>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password</label>
+        <div class="input-wrapper">
+          <span class="input-icon">🛡️</span>
+          <input
+            [type]="showConfirmPassword() ? 'text' : 'password'"
+            id="confirm-password"
+            name="confirmPassword"
+            placeholder="••••••••"
+            required
+            [(ngModel)]="user.confirmPassword"
+            #confirmPw="ngModel"
+            [class.input-invalid]="confirmPw.touched && user.confirmPassword !== user.password"
+          />
+          <button type="button" class="toggle-visibility" (click)="toggleConfirmPassword()">
+            {{ showConfirmPassword() ? '👁️' : '👁️‍🗨️' }}
+          </button>
+        </div>
+        @if (confirmPw.touched && user.confirmPassword !== user.password) {
+          <div class="error-message">
+            <span>Passwords do not match</span>
+          </div>
+        }
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="registerForm.invalid || user.confirmPassword !== user.password || isLoading()"
+        [ngClass]="{ 'btn-disabled': registerForm.invalid || user.confirmPassword !== user.password || isLoading() }"
+      >
+        @if (isLoading()) {
+          <span class="spinner">⏳</span> Processing...
+        } @else {
+          Create Account
+        }
+      </button>
+    </form>
+
+    <div class="auth-footer">
+      <p>Already have an account? <a routerLink="/auth/login" class="link">Log In</a></p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<header class="main-header">
+  <div class="header-content">
+    <div class="logo-area" routerLink="/home">
+      <span class="logo-icon">🚀</span>
+      <span class="logo-text">TaskMaster</span>
+    </div>
+
+    <nav class="nav-menu">
+      <a
+        routerLink="/home"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="nav-item"
+      >
+        <span class="nav-text">Home</span>
+      </a>
+      @if (isAuth()) {
+        <a routerLink="/task/tasks" routerLinkActive="active" class="nav-item">
+          <span class="nav-text">My Tasks</span>
+        </a>
+        <a routerLink="/task/task-form" routerLinkActive="active" class="nav-item">
+          <span class="nav-text">Create Task</span>
+        </a>
+      }
+    </nav>
+
+    <div class="auth-actions">
+      @if (!isAuth()) {
+        <a routerLink="/auth/login" class="btn btn-text">Login</a>
+        <a routerLink="/auth/register" class="btn btn-primary">Sign Up</a>
+      } @else {
+        <div class="user-profile">
+          <span class="user-avatar">👤</span>
+          <button class="btn btn-outline" (click)="onClickLogout()">Logout</button>
+        </div>
+      }
+    </div>
+  </div>
+</header>
